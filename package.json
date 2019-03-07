@@ -1,0 +1,22 @@
+{
+  "name": "wetube",
+  "version": "1.0.0",
+  "description": "youtube clone with node.js, vanilla js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Koojahyun/youtube_Clone.git"
+  },
+  "author": "Jahyun Koo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Koojahyun/youtube_Clone/issues"
+  },
+  "homepage": "https://github.com/Koojahyun/youtube_Clone#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
