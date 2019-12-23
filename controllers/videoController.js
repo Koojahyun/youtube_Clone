@@ -29,7 +29,8 @@ export const search = async (req, res) => {
   res.render("search", { pageTitle: "SEARCH", searchingBy, videos });
 };
 
-export const getUpload = (req, res) => res.render("upload", { pageTitle: "UPLOAD" });
+export const getUpload = (req, res) =>
+  res.render("upload", { pageTitle: "UPLOAD" });
 
 export const postUpload = async (req, res) => {
   const {

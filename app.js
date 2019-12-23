@@ -2,7 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
-import bodyParser from "body-parser";
+// import bodyParser from "body-parser";
 import routes from "./routes";
 import { localMiddleware } from "./middlewares";
 import userRouter from "./routers/userRouter";

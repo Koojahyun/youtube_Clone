@@ -19,7 +19,8 @@ export const postJoin = (req, res) => {
   }
 };
 
-export const getLogin = (req, res) => res.render("login", { pageTitle: "LOGIN" });
+export const getLogin = (req, res) =>
+  res.render("login", { pageTitle: "LOGIN" });
 export const postLogin = (req, res) => {
   res.redirect(routes.home);
 };
@@ -28,7 +29,9 @@ export const logout = (req, res) => {
   //todo : Process log out
   res.redirect(routes.home);
 };
-export const userDetail = (req, res) => res.render("userDetail", { pageTitle: "USERDETAIL" });
-export const editProfile = (req, res) => res.render("editProfile", { pageTitle: "EDITPROFILE" });
+export const userDetail = (req, res) =>
+  res.render("userDetail", { pageTitle: "USERDETAIL" });
+export const editProfile = (req, res) =>
+  res.render("editProfile", { pageTitle: "EDITPROFILE" });
 export const changePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "CHANGEPASSWORD" });
