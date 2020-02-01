@@ -1,10 +1,11 @@
 import routes from "../routes";
+import User from "../models/User";
 
 export const getJoin = (req, res) => {
   res.render("join", { pageTitle: "JOIN" });
 };
 
-export const postJoin = (req, res) => {
+export const postJoin = async (req, res) => {
   const {
     body: { name, email, password, password2 }
   } = req;
@@ -13,7 +14,15 @@ export const postJoin = (req, res) => {
     res.status(400);
     res.render("join", { pageTitle: "JOIN" });
   } else {
-    //todo : register User
+    try {
+      const user = await User.create({
+        name,
+        email
+      });
+      User.register(user.password);
+    } catch (error) {
+      console.log(error);
+    }
     //todo : log user in
     res.redirect(routes.home);
   }
