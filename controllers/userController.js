@@ -47,7 +47,7 @@ export const githubLoginCallback = async (_, __, profile, cb) => {
     const user = await User.findOne({ email });
     if (user) {
       user.githubId = id;
-      user.avatarUrl = avatarUrl;
+      // user.avatarUrl = avatarUrl;
       user.save();
       return cb(null, user);
     }
@@ -77,7 +77,7 @@ export const fbLoginCallback = async (_, __, profile, cb) => {
     const user = await User.findOne({ email });
     if (user) {
       user.facebookId = id;
-      user.avatarUrl = `https://graph.facebook.com/${id}/picture?type=large`;
+      // user.avatarUrl = `https://graph.facebook.com/${id}/picture?type=large`;
       user.save();
       return cb(null, user);
     }
@@ -107,7 +107,7 @@ export const googleLoginCallback = async (_, __, profile, cb) => {
     const user = await User.findOne({ email });
     if (user) {
       user.googleId = id;
-      user.avatarUrl = avatarUrl;
+      //user.avatarUrl = avatarUrl;
       user.save();
       return cb(null, user);
     }
@@ -148,7 +148,7 @@ export const userDetail = async (req, res) => {
     res.redirect(routes.home);
   }
 };
-export const editProfile = (req, res) =>
+export const getEditProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "EDITPROFILE" });
 export const changePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "CHANGEPASSWORD" });
