@@ -66,6 +66,16 @@ export const postGithubLogin = (req, res) => {
   res.redirect(routes.home);
 };
 
+export const fbLogin = passport.authenticate("facebook");
+
+export const fbLoginCallback = async (_, __, profile, cb) => {
+  console.log(_, __, profile, cb);
+};
+
+export const postFacebookLogin = (req, res) => {
+  res.redirect(routes.home);
+};
+
 export const logout = (req, res) => {
   req.logout();
   res.redirect(routes.home);
@@ -75,8 +85,18 @@ export const getMe = (req, res) => {
   res.render("userDetail", { pageTitle: "User Detail", user: req.user });
 };
 
-export const userDetail = (req, res) =>
-  res.render("userDetail", { pageTitle: "USERDETAIL" });
+export const userDetail = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  try {
+    const user = await User.findById(id);
+    res.render("userDetail", { pageTitle: "USERDETAIL" });
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.home);
+  }
+};
 export const editProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "EDITPROFILE" });
 export const changePassword = (req, res) =>
