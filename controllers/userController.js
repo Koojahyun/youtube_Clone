@@ -69,10 +69,60 @@ export const postGithubLogin = (req, res) => {
 export const fbLogin = passport.authenticate("facebook");
 
 export const fbLoginCallback = async (_, __, profile, cb) => {
-  console.log(_, __, profile, cb);
+  const {
+    _json: { id, name, email }
+  } = profile;
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      user.facebookId = id;
+      user.avatarUrl = `https://graph.facebook.com/${id}/picture?type=large`;
+      user.save();
+      return cb(null, user);
+    }
+    const newUser = await User.create({
+      email,
+      name,
+      facebookId: id,
+      avatarUrl: `https://graph.facebook.com/${id}/picture?type=large`
+    });
+    return cb(null, newUser);
+  } catch (error) {
+    return cb(error);
+  }
 };
 
 export const postFacebookLogin = (req, res) => {
+  res.redirect(routes.home);
+};
+
+export const googleLogin = passport.authenticate("google");
+
+export const googleLoginCallback = async (_, __, profile, cb) => {
+  const {
+    _json: { sub: id, name, email, picture: avatarUrl }
+  } = profile;
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      user.googleId = id;
+      user.avatarUrl = avatarUrl;
+      user.save();
+      return cb(null, user);
+    }
+    const newUser = await User.create({
+      email,
+      name,
+      googleId: id,
+      avatarUrl
+    });
+    return cb(null, newUser);
+  } catch (error) {
+    return cb(error);
+  }
+};
+
+export const postGoogleLogin = (req, res) => {
   res.redirect(routes.home);
 };
 
@@ -91,7 +141,7 @@ export const userDetail = async (req, res) => {
   } = req;
   try {
     const user = await User.findById(id);
-    res.render("userDetail", { pageTitle: "USERDETAIL" });
+    res.render("userDetail", { pageTitle: "USERDETAIL", user });
   } catch (error) {
     console.log(error);
     res.redirect(routes.home);
