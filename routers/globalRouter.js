@@ -50,5 +50,5 @@ globalRouter.get(
   passport.authenticate("google", { failureRedirect: "/login" }),
   postGoogleLogin
 );
-globalRouter.get(routes.me, getMe);
+//globalRouter.get(routes.me, getMe);
 export default globalRouter;

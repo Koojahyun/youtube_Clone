@@ -11,7 +11,7 @@ const USERS = "/users";
 const USER_DETAIL = "/:id";
 const EDIT_PROFILE = "/editProfile";
 const CHANGE_PASSWORD = "/changePassword";
-const ME = "/me";
+const ME = "/:id";
 
 // VIDEOS
 
@@ -77,7 +77,13 @@ const routes = {
   },
   github: GITHUB,
   githubCallback: GITHUB_CALLBACK,
-  me: ME,
+  me: id => {
+    if (id) {
+      return `/users/${id}`;
+    } else {
+      return ME;
+    }
+  },
   facebook: FACEBOOK,
   facebookCallback: FACEBOOK_CALLBACK,
   google: GOOGLE,
