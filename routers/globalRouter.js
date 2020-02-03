@@ -10,7 +10,6 @@ import {
   postLogin,
   githubLogin,
   postGithubLogin,
-  getMe,
   fbLogin,
   postFacebookLogin,
   googleLogin,
