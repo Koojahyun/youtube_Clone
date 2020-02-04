@@ -2,11 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  .video__player {
-    video {
-      width: 850px;
-      max-width: 100%;
-      height: auto;
+  .video__Screen {
+    width: 850px;
+    .video__player {
+      video {
+        max-width: 100%;
+        height: auto;
+      }
     }
   }
   .video__info {
